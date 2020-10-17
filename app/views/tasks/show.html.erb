@@ -1,4 +1,26 @@
 <h2>Task: <%= @task.title %></h2>
 <p><%= @task.details %></p>
 
-<%= link_to "Back to all the tasks", tasks_path %>
+<p>
+  <% if @task.completed == true %>
+    <i class="far fa-check-square"></i> This task is already completed!
+    <% else %>
+    <i class="far fa-square"></i> This task is not completed yet!
+  <% end %>
+</p>
+
+<p>
+
+  <%= link_to '<i class="far fa-edit"></i> Update the task'.html_safe, edit_task_path %>
+</p>
+
+<p>
+  <%= link_to "<i class='far fa-trash-alt'></i> Delete #{@task.title}".html_safe,
+              task_path(@task),
+              method: :delete,
+              data: { confirm: "Are you sure :(?" } %>
+</p>
+
+<p>
+  <%= link_to '<i class="fas fa-reply-all"></i> Back to all the tasks'.html_safe, tasks_path %>
+</p>
